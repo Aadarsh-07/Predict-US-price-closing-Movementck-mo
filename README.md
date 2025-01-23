@@ -15,10 +15,12 @@ The encoder is responsible for mapping the input image to a latent space. This i
 
 **Convolutional layers (Conv2D):** 
 These are used to detect patterns and features from the input image (such as edges, textures, etc.). The number of filters increases as we move deeper into the network to capture more complex features at different levels of abstraction.
-MaxPooling layers: These are used for downsampling, reducing the spatial resolution of the image and extracting the most important features from each region.
+
+**MaxPooling layers:** These are used for downsampling, reducing the spatial resolution of the image and extracting the most important features from each region.
 The encoder's output is split into two parts:
 
 **Mean (mu):** This represents the mean of the latent space distribution.
+
 **Log Variance (logvar):** This represents the variance (spread) of the latent space distribution.
 
 
@@ -33,8 +35,11 @@ This enables backpropagation through the sampling process, which is necessary fo
 The decoder takes a point in the latent space (sampled using the reparameterization trick) and attempts to reconstruct the image.
 
 **Fully connected layer (Dense):** This layer reshapes the latent space vector into a format suitable for the decoder's convolutional layers.
+
 **Deconvolutional layers (Conv2DTranspose):** These layers are used for upsampling, expanding the spatial resolution of the image back to the original size.
+
 **Activation Functions (ReLU, Sigmoid):**
+
       ReLU is used in the hidden layers to introduce non-linearity.
       Sigmoid is used in the output layer to ensure the pixel values are between 0 and 1, which is suitable for image data normalized to this range.
 
@@ -48,7 +53,11 @@ This is important for ensuring that the learned latent space is continuous and w
 
 5. Key Technical Terms
 **Encoder and Decoder:** The encoder compresses the input into a smaller, meaningful representation (latent space), and the decoder reconstructs the input from this representation.
+
 **Latent Space:** A lower-dimensional space that encodes the most important information about the input data. In CVAE, this space is regularized to follow a Gaussian distribution using the KL-divergence loss.
+
 **Convolutional Layers:** These are used to automatically learn spatial features from images.
+
 **Reparameterization Trick:** A technique that allows backpropagation through the latent sampling process by making it differentiable.
+
 **Deconvolutional Layers (Conv2DTranspose):** Used to reverse the downsampling effect of convolutional layers and expand the image back to its original resolution.
